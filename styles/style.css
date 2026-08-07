@@ -14,16 +14,32 @@ header{
     display: flex;
     background-color: blue;
     color: aliceblue;
-    padding: 4%;
+    padding: 2%;
     justify-content: space-between;
-    nav ul{
+    ul{
         display: flex;
         gap: 24px;
         list-style-type: none;
+        padding: 4%;
     }
 }
 
 .Logotipo{
     width:60px;
+}
+
+section{
+    padding: 10px;
+    .menu_options{
+        display: flex;
+        menu{
+            list-style-type: none;
+            display: flex;
+            justify-content:space-evenly;
+            gap: 10px;
+
+        }
+    
+    }
 }
 
