@@ -1,0 +1,62 @@
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/style.css">
+    <title>Cadastro Clientes</title>
+</head>
+<body>
+   
+    <!-- Menu de cima  -->
+
+
+    <header>
+        <div>
+            <h1> <img class="Logotipo", src="assets/calendar.svg" alt="LogoProtótopo">  Atendimentos </h1>
+        </div>
+        
+        <nav>
+            <ul>
+                <li> <button onclick="console.log('Hello, world!')">Início</button> </li>
+                <li> <button onclick="console.log('Hello, agendamentos')">Agendamentos</button> </li>
+                <li> <button onclick="console.log('Hello, entrar')">Entrar</button> </li>
+                <li> <button onclick="console.log('Hello, sair')">Sair</button> </li>
+            </ul>
+        </nav>
+        
+    </header>
+    
+    <!-- Formulrio de cadastro Clientes -->
+    <section>
+        <form action="" method="POST">
+            
+            <div>
+                <label for="name">Nome:</label>
+                <input type="text" name="name" id="name" placeholder="Nome Completo" >
+            </div>
+
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" name="email" id="email" placeholder="Email">
+            </div>
+
+
+            <div>
+                <label for="phone">Telefone:</label>
+                <input type="tel" name="telephone" id="phone" placeholder="Nome Completo" >
+            </div>
+
+            <div>
+                <input type="reset" value="Reset">
+            </div>
+
+            <div>
+                <input type="submit" value="Submit">
+            </div>
+
+            <div>
+                <input type="button" value="Voltar" onclick="window.location.href='index.html'">
+            </div>
+
+        </form>
+    </section>
