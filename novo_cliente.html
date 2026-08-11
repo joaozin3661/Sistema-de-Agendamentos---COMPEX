@@ -33,18 +33,24 @@
             
             <div>
                 <label for="name">Nome:</label>
-                <input type="text" name="name" id="name" placeholder="Nome Completo" >
+                <input type="text" name="name" id="name" placeholder="Nome Completo" required>
             </div>
 
             <div>
                 <label for="email">Email:</label>
-                <input type="email" name="email" id="email" placeholder="Email">
+                <input type='text' 
+                name="cpf" 
+                id="cpf" 
+                placeholder="000.000.000-00" 
+                pattern="\d{3}\.\d{3}\.\d{3}\-\d{2}" 
+                maxlength="14"
+                required>
             </div>
 
 
             <div>
-                <label for="phone">Telefone:</label>
-                <input type="tel" name="telephone" id="phone" placeholder="DDD+Número" >
+                <label for="number">Idade:</label>
+                <input type="number" name="idade" id="idade" placeholder="Idade Ex: 21" required>
             </div>
 
             <div>
