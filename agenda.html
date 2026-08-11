@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda de Atendimentos</title>
+
+    <!-- STANDARD JS -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@7.0.2/all/global.js"></script>
+
+    <!-- THEME JS -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@7.0.2/themes/monarch/global.js"></script>
+
+    <!-- STYLESHEETS -->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@7.0.2/skeleton.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@7.0.2/themes/monarch/theme.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@7.0.2/themes/monarch/palettes/purple.css" rel="stylesheet" />
+    <link href="styles/agenda.css" rel="stylesheet" />
+    <script src="scripts/agenda.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <div>
+        <h1>
+          <img class="logotipo" src="assets/calendar.svg" alt="Logotipo" width="50" />
+          Atendimentos
+        </h1>
+      </div>
+
+      <nav>
+        <ul>
+          <li><button onclick="location.href='index.html'">Início</button></li>
+          <li><button onclick="location.href='agenda.html'">Agendamentos</button></li>
+          <li><button onclick="console.log('Entrar')">Entrar</button></li>
+          <li><button onclick="console.log('Sair')">Sair</button></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <div class="calendar-controls">
+        <button id="prevMonth" type="button">Mês anterior</button>
+        <button id="nextMonth" type="button">Próximo mês</button>
+        <button id="clearEvents" type="button">Limpar agendamentos</button>
+      </div>
+
+      
+    </main>
+  </body>
+</html>

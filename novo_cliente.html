@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/clients.css">
+    <title>Cadastro Clientes</title>
+</head>
+<body>
+   
+    <!-- Menu de cima  -->
+
+
+    <header>
+        <div>
+            <h1> <img class="Logotipo", src="assets/calendar.svg" alt="LogoProtótopo">  Atendimentos </h1>
+        </div>
+        
+        <nav>
+            <ul>
+                <li> <button onclick="console.log('Hello, world!')">Início</button> </li>
+                <li> <button onclick="console.log('Hello, agendamentos')">Agendamentos</button> </li>
+                <li> <button onclick="console.log('Hello, entrar')">Entrar</button> </li>
+                <li> <button onclick="console.log('Hello, sair')">Sair</button> </li>
+            </ul>
+        </nav>
+        
+    </header>
+    
+    <!-- Formulrio de cadastro Clientes -->
+    <section>
+        <form action="" method="POST">
+            
+            <div>
+                <label for="name">Nome:</label>
+                <input type="text" name="name" id="name" placeholder="Nome Completo" required>
+            </div>
+
+            <div>
+                <label for="email">Email:</label>
+                <input type='text' 
+                name="cpf" 
+                id="cpf" 
+                placeholder="000.000.000-00" 
+                pattern="\d{3}\.\d{3}\.\d{3}\-\d{2}" 
+                maxlength="14"
+                required>
+            </div>
+
+
+            <div>
+                <label for="number">Idade:</label>
+                <input type="number" name="idade" id="idade" placeholder="Idade Ex: 21" required>
+            </div>
+
+            <div>
+                <input type="reset" value="Reset">
+            </div>
+
+            <div>
+                <input type="submit" value="Submit">
+            </div>
+
+            <div>
+                <input type="button" value="Voltar" onclick="window.location.href='clientes.html'">
+            </div>
+
+        </form>
+    </section>
