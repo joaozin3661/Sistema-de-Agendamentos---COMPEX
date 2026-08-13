@@ -27,7 +27,7 @@ header{
     align-items: center;
     gap: 16px;
     padding: 16px 24px;
-    background-color: linear-gradient(120deg, #102a82, var(--brand));
+    background: linear-gradient(120deg, #102a82, var(--brand));
     color: #f8fafc;
 }
 h1{

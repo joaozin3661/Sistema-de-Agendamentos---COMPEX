@@ -27,7 +27,9 @@ if (form) {
             }
 
             console.log(await response.json());
+            alert("Cliente cadastrado com sucesso!")
             form.reset();
+            window.location.href='clientes.html'
         } catch (e) {
             console.error(e);
         }
