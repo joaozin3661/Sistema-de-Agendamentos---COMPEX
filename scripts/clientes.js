@@ -11,7 +11,7 @@ fetch(API)
     })
 
     .then(data =>{
-        area.innerHTML = data;
+        area.innerHTML = "Clientes <br><br>" + data;
     })
     .catch (error => {
         area.textContent = "Failed to load contend"
