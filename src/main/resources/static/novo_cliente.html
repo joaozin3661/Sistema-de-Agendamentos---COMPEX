@@ -18,32 +18,28 @@
         
         <nav>
             <ul>
-                <li> <button onclick="console.log('Hello, world!')">Início</button> </li>
-                <li> <button onclick="console.log('Hello, agendamentos')">Agendamentos</button> </li>
-                <li> <button onclick="console.log('Hello, entrar')">Entrar</button> </li>
-                <li> <button onclick="console.log('Hello, sair')">Sair</button> </li>
-            </ul>
-        </nav>
+                <li> <button onclick="window.location.href='index.html'">Início</button> </li>
+                <li> <button onclick="window.location.href='agenda.html'">Agendamentos</button> </li>
         
     </header>
     
     <!-- Formulrio de cadastro Clientes -->
     <section>
-        <form action="" method="POST">
+        <form action="" method="POST" id="newCliente">
             
             <div>
                 <label for="name">Nome:</label>
-                <input type="text" name="name" id="name" placeholder="Nome Completo" required>
+                <input type="text" name="name" id="nome" placeholder="Nome Completo" required>
             </div>
 
             <div>
-                <label for="email">Email:</label>
+                <label for="cpf">CPF:</label>
                 <input type='text' 
                 name="cpf" 
                 id="cpf" 
-                placeholder="000.000.000-00" 
-                pattern="\d{3}\.\d{3}\.\d{3}\-\d{2}" 
-                maxlength="14"
+                placeholder="00000000000"
+
+                maxlength="11"
                 required>
             </div>
 
@@ -67,3 +63,6 @@
 
         </form>
     </section>
+    <script src="scripts/novo_cliente.js"></script>
+</body>
+
