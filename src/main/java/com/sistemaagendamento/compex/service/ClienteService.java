@@ -1,7 +1,7 @@
 package com.sistemaagendamento.compex.service;
 
 import com.sistemaagendamento.compex.model.Cliente;
-import com.sistemaagendamento.compex.repository.ICliente;
+import com.sistemaagendamento.compex.repository.ClienteRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -11,9 +11,9 @@ import java.util.Optional;
 
 @Service
 public class ClienteService {
-    private ICliente repository;
+    private ClienteRepository repository;
 
-    public ClienteService(ICliente repository){this.repository = repository;}
+    public ClienteService(ClienteRepository repository){this.repository = repository;}
 
     public List<Cliente> listarClientes(){
         List<Cliente> lista = repository.findAll();
