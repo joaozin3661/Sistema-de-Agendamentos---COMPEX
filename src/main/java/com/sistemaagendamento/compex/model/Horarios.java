@@ -1,5 +1,7 @@
 package com.sistemaagendamento.compex.model;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
@@ -10,9 +12,11 @@ public class Horarios {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @NotNull(message = "Horário é obrigatório")
+    @Column(nullable = false,unique = true)
     private LocalDateTime horarioLivre;
 
+    @NotNull(message = "Disponibilidade é obrigatória")
     @Column(nullable = false)
     private Boolean disponivel=true;
 
