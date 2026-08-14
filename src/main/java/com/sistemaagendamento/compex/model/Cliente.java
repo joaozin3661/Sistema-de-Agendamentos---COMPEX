@@ -1,6 +1,10 @@
 package com.sistemaagendamento.compex.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Positive;
 
 @Entity
 @Table(name = "Cliente")
@@ -12,12 +16,17 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Nome é obrigatório")
     @Column(nullable = false, length = 100)
     private String nome;
 
+    @NotBlank(message = "CPF é obrigatório")
+    @Pattern(regexp = "\\d{11}", message = "CPF deve conter exatamente 11 dígitos numéricos")
     @Column(nullable = false, unique = true, length = 11)
     private String cpf;
 
+    @NotNull(message = "Idade é obrigatória")
+    @Positive(message = "Idade deve ser maior que zero")
     @Column(nullable = false)
     private int idade;
 

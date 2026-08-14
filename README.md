@@ -48,16 +48,20 @@ Implementadas
 - Modelagem de dados: "Cliente", "Horarios", "Agendamento", "Status" (ATIVO/CANCELADO)
 - Regra de integridade a nível de banco: somente 1 agendamento ativo por horário
 - Tela estática inicial (front-end)
+- API REST para cadastro de clientes ("ClienteController", "ClienteService", "ClienteRepository"), com validação de campos (nome, CPF, idade)
+- API REST para cadastro de horários disponíveis ("HorarioController", "HorarioService", "HorariosRepository"), com checagem de horário duplicado (retorna 409)
+- Esqueleto da API REST de agendamento ("AgendamentoController", "AgendamentoService"): criar agendamento (valida cliente/horário e ocupação), cancelar agendamento (libera o horário), listar agendamentos ativos
+- Telas de cadastro e listagem de clientes ("clientes.html", "novo_cliente.html") integradas com a API
+- Testes unitários (JUnit 5 + Mockito) de "ClienteService", "HorarioService" e "AgendamentoService"
 
 Em processo de implementação
+- Ligar o "AgendamentoController" no front-end (telas de agenda/cancelamento ainda estáticas)
 - O restante das telas
 
 Falta implementar
-- API REST para cadastro de clientes
-- API REST para cadastro de horários disponíveis
-- API REST para agendamento de horário
-- API REST para cancelamento de agendamento
-- Endpoint de listagem dos próximos agendamentos
+- Endpoint de listagem dos próximos agendamentos com filtro por data/cliente (hoje só lista todos os ativos)
+- Testes de integração (MockMvc + H2) dos controllers
+- Validação (`@Valid`) no `Horarios`/`HorarioController` (o cadastro de cliente já tem, o de horário ainda não)
 
 
 -> Estrutura do projeto
@@ -65,11 +69,23 @@ Falta implementar
 ```
 src/main/java/com/sistemaagendamento/compex/
 ├── CompexApplication.java
-└── model/                (model com as entidades)
-    ├── Cliente.java 
-    ├── Horarios.java
-    ├── Agendamento.java
-    └── Status.java
+├── model/                (model com as entidades)
+│   ├── Cliente.java 
+│   ├── Horarios.java
+│   ├── Agendamento.java
+│   └── Status.java
+├── repository/           (interfaces JpaRepository)
+│   ├── ClienteRepository.java
+│   ├── AgendamentoRepository.java
+│   └── HorariosRepository.java
+├── service/              (regras de negócio)
+│   ├── ClienteService.java
+│   ├── HorarioService.java
+│   └── AgendamentoService.java
+└── controller/           (endpoints REST)
+    ├── ClienteController.java
+    ├── HorarioController.java
+    └── AgendamentoController.java
 src/main/resources/
 ├── application.properties
 ├── schema.sql           (garantir 1 agendamento por horário)
@@ -82,7 +98,7 @@ A regra "não permitir dois clientes agendados no mesmo horário" será garantid
 
 1. Banco de dados: um índice único parcial em `agendamento(horario_id)` filtrando `WHERE status = 'ATIVO'` (arquivo `schema.sql`). Isso impede duplicidade mesmo em cenários de 2 requisições as mesmo tempo
 
-2. Camada de serviço (em desenvolvimento): checagem de disponibilidade de horário, vai retornar pro cliente um erro de serviço e não de banco.
+2. Camada de serviço: o `AgendamentoService` checa se o horário já tem um agendamento ativo (via `AgendamentoRepository.findByHorariosIdAndStatus`) ou está marcado como indisponível antes de criar, retornando `409 Conflict` pro cliente em vez de deixar estourar erro de banco.
 
 -> Principal dificuldade encontrada
 
