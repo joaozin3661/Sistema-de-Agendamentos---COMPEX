@@ -22,9 +22,16 @@ if (form) {
             });
 
             if (!response.ok) {
+                let mensagem = "Erro ao cadastrar cliente."
                 const errorText = await response.text();
+                if (response.status == 409)
+                {
+                    alert("Erro 409: Já existe esse CPF na lista de clientes");
+                }
+                form.reset();
                 throw new Error(`Erro ao cadastrar cliente: ${response.status} ${errorText}`);
             }
+                
 
             console.log(await response.json());
             alert("Cliente cadastrado com sucesso!")
