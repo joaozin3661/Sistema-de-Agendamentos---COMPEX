@@ -127,4 +127,15 @@ class ClienteServiceTest {
 
         verify(repository, never()).delete(any());
     }
+    
+    @Test
+    void criarCliente_IdadeInvalida_Exception() {
+    Cliente clienteInvalido = criarCliente(null, "Maria", "11111111111", -67);
+
+    assertThatThrownBy(() -> clienteService.criarCliente(clienteInvalido))
+            .isInstanceOf(ResponseStatusException.class)
+            .hasMessageContaining("Idade inválida");
+
+    verify(repository, never()).save(any());
+    }
 }

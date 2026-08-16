@@ -125,4 +125,15 @@ class HorarioServiceTest {
 
         verify(horarioRepository, never()).delete(any());
     }
+
+    @Test
+    void criarHorarios_DataRetroativa_Exception() {
+        Horarios horarioPassado = criarHorario(LocalDateTime.of(2020, 1, 1, 10, 0), true);
+
+        assertThatThrownBy(() -> horarioService.criarHorarios(horarioPassado))
+            .isInstanceOf(ResponseStatusException.class)
+            .hasMessageContaining("Horário deve ser uma data futura");
+
+        verify(horarioRepository, never()).save(any());
+    }
 }
