@@ -21,6 +21,9 @@ public class ClienteService {
     }
 
     public Cliente criarCliente(Cliente cliente){
+        if (cliente.getIdade() <= 0) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Idade inválida");
+        }
         Cliente clienteNovo = repository.save(cliente);
         return clienteNovo;
     }

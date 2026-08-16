@@ -7,7 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDateTime;
 import java.util.List;
+
 @Service
 public class HorarioService {
     private HorariosRepository horarioRepository;
@@ -20,6 +22,9 @@ public class HorarioService {
     }
 
     public Horarios criarHorarios(Horarios horarios){
+        if (horarios.getHorarioLivre().isBefore(LocalDateTime.now())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Horário deve ser uma data futura");
+        }
         if (horarioRepository.existsByHorarioLivre(horarios.getHorarioLivre())) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Já existe um horário cadastrado nessa data/hora");
         }
