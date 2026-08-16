@@ -67,7 +67,7 @@ async function load_clients(){
 }
 
 
-// Função chamada quando você clica no botão "Editar" de um cliente
+// Função chamada quando clica no botão "Editar" de um cliente
 function abrirModalEditar(cliente) {
     // Preenche os inputs com os dados atuais do cliente
     document.getElementById('edit-id').value = cliente.id;
@@ -96,14 +96,14 @@ formEditar.addEventListener('submit', async function(event) {
         idade: Number(document.getElementById('edit-idade').value)
     };
 
-    // Validação extra (o 'required' do HTML já ajuda muito)
+    // Validação extra
     if (!payload.nome || !payload.cpf || payload.idade <= 0) {
         alert('Preencha nome, CPF e idade válidos.');
         return;
     }
 
     try {
-        // Seu PUT request original (que estava correto!)
+        // PUT request 
         const response = await fetch(`${API}/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
