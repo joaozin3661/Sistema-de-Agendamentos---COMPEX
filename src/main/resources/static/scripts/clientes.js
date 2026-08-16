@@ -35,9 +35,10 @@ function fazerLinhaCliente(cliente){
 
 }
 
+// Carrega a lista
 async function load_clients(){
-    try{
-    const response = await fetch(API);
+    try {        
+        const response = await fetch(API);
         if (!response.ok) {
             throw new Error(`Erro ao carregar cliente: ${response.status}`)
         }
@@ -66,10 +67,8 @@ async function load_clients(){
     }
 }
 
-
-// Função chamada quando clica no botão "Editar" de um cliente
-function abrirModalEditar(cliente) {
-    // Preenche os inputs com os dados atuais do cliente
+// Preenche e abre o modal
+function abrirModalEditar(cliente) {    
     document.getElementById('edit-id').value = cliente.id;
     document.getElementById('edit-nome').value = cliente.nome;
     document.getElementById('edit-cpf').value = cliente.cpf || '';
@@ -79,16 +78,15 @@ function abrirModalEditar(cliente) {
     modal.showModal();
 }
 
+// Fecha o modal
 function fecharModal() {
     modal.close();
 }
 
-// Ouve o evento de envio do formulário
+// Ouve o evento de salvar o formulário do modal de edição
 formEditar.addEventListener('submit', async function(event) {
-    // Evita que a página recarregue ao enviar o formulário
     event.preventDefault();
 
-    // Captura os dados digitados
     const id = document.getElementById('edit-id').value;
     const payload = {
         nome: document.getElementById('edit-nome').value.trim(),
@@ -96,14 +94,12 @@ formEditar.addEventListener('submit', async function(event) {
         idade: Number(document.getElementById('edit-idade').value)
     };
 
-    // Validação extra
     if (!payload.nome || !payload.cpf || payload.idade <= 0) {
         alert('Preencha nome, CPF e idade válidos.');
         return;
     }
 
     try {
-        // PUT request 
         const response = await fetch(`${API}/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
@@ -118,54 +114,13 @@ formEditar.addEventListener('submit', async function(event) {
         alert('Cliente atualizado com sucesso!');
         fecharModal();
         
-        // Atualiza a lista na tela
+    
         load_clients(); 
     } catch (error) {
         console.error(error);
         alert('Não foi possível atualizar o cliente.');
     }
 });
-
-async function editarCliente(cliente) {
-    const nome = prompt('Novo nome do cliente:', cliente.nome);
-    if (nome === null) return;
-
-    const cpf = prompt('Novo CPF:', cliente.cpf || '');
-    if (cpf === null) return;
-
-    const idadeInput = prompt('Nova idade:', cliente.idade ?? '');
-    if (idadeInput === null) return;
-
-    const payload = {
-        nome: nome.trim(),
-        cpf: cpf.trim(),
-        idade: Number(idadeInput)
-    };
-
-    if (!payload.nome || !payload.cpf || Number.isNaN(payload.idade) || payload.idade <= 0) {
-        alert('Preencha nome, CPF e idade válidos.');
-        return;
-    }
-
-    try {
-        const response = await fetch(`${API}/${cliente.id}`, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-        });
-
-        if (!response.ok) {
-            const errorText = await response.text();
-            throw new Error(`Erro ao editar cliente: ${response.status} ${errorText}`);
-        }
-
-        alert('Cliente atualizado com sucesso!');
-        carregarClientes();
-    } catch (error) {
-        console.error(error);
-        alert('Não foi possível atualizar o cliente.');
-    }
-}
 
 async function deletarCliente(id) {
     const confirmado = confirm('Deseja realmente excluir este cliente?');
@@ -179,13 +134,13 @@ async function deletarCliente(id) {
         }
 
         alert('Cliente deletado com sucesso!');
-        carregarClientes();
+        
+        load_clients();
     } catch (error) {
         console.error(error);
         alert('Não foi possível deletar o cliente.');
     }
 }
 
-
-
-load_clients()
+// Carrega os clientes ao abrir a página pela primeira vez
+load_clients();
