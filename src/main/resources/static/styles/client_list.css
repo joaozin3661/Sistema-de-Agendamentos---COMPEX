@@ -47,6 +47,7 @@ h1{
 
 button:hover{
     filter: brightness(0.95);
+    cursor: pointer;
 }
 nav ul {
   margin: 0;
@@ -85,4 +86,38 @@ section{
     font-weight: 600;
     cursor: pointer;
     padding: 8px 14px;
+}
+
+.cliente-linha {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 3px;
+    gap: 10px;
+    background-color: var(--surface);
+    border-radius: 10px;
+
+    .cliente-actions{
+        padding: 8px 14px;
+        margin-left: auto;
+        display: flex;
+        gap: 10px;
+
+        button{
+            border: none;
+            border-radius: 10px;
+
+            
+
+        }
+        
+        .btn-deletar{
+            background: var(--danger);
+            color: var(--surface);
+        }
+        
+    }
+
+    .cliente-nome{
+        padding: 5%;
+    }
 }
