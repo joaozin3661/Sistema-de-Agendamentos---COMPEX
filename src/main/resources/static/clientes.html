@@ -15,9 +15,9 @@
 
     <header>
         <div>
-            <h1> <img class="Logotipo", src="assets/calendar.svg" alt="LogoProtótopo">  Atendimentos </h1>
+            <h1> <img class="Logotipo" , src="assets/calendar.svg" alt="LogoProtótopo"> Atendimentos </h1>
         </div>
-        
+
         <nav>
             <ul>
                 <li> <button onclick="window.location.href='index.html'">Início</button> </li>
@@ -36,8 +36,34 @@
         </div>
 
         <div id="lista_clientes">
-            
+            <dialog id="modal-editar">
+                <form id="form-editar">
+                    <h3>Editar Cliente</h3>
+
+                    <!-- Input oculto para guardar o ID do cliente -->
+                    <input type="hidden" id="edit-id">
+
+                    <div style="margin-bottom: 10px;">
+                        <label>Nome:</label><br>
+                        <input type="text" id="edit-nome" required>
+                    </div>
+
+                    <div style="margin-bottom: 10px;">
+                        <label>CPF:</label><br>
+                        <input type="text" id="edit-cpf" required>
+                    </div>
+
+                    <div style="margin-bottom: 10px;">
+                        <label>Idade:</label><br>
+                        <input type="number" id="edit-idade" min="1" required>
+                    </div>
+
+                    <button type="submit">Salvar Alterações</button>
+                    <button type="button" onclick="fecharModal()">Cancelar</button>
+                </form>
+            </dialog>
         </div>
+
 
     </section>
 
