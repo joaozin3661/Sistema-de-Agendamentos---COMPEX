@@ -25,6 +25,9 @@ public class ClienteService {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "CPF já cadastrado");
         }
 
+        if (cliente.getIdade() <= 0) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Idade inválida");
+        }
         Cliente clienteNovo = repository.save(cliente);
         return clienteNovo;
     }
