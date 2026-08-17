@@ -4,6 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agenda de Atendimentos</title>
+
+    <link href="styles/agenda.css" rel="stylesheet" />
     <script src="scripts/agenda.js" defer></script>
   </head>
   <body>
@@ -24,13 +26,31 @@
     </header>
 
     <main>
-      <div class="calendar-controls">
-        <button id="prevMonth" type="button">Mês anterior</button>
-        <button id="nextMonth" type="button">Próximo mês</button>
-        <button id="clearEvents" type="button">Limpar agendamentos</button>
-      </div>
+      <h2>Novo agendamento</h2>
 
-      
+      <form id="novoAgendamento" class="novo_agendamento">
+        <div>
+          <label for="cliente">Cliente</label>
+          <select id="cliente" name="cliente" required>
+            <option value="" disabled selected>Selecione um cliente</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="horario">Horário disponível</label>
+          <select id="horario" name="horario" required>
+            <option value="" disabled selected>Selecione um horário</option>
+          </select>
+        </div>
+
+        <input type="submit" value="Agendar">
+      </form>
+
+      <h2>Agendamentos ativos</h2>
+
+      <div id="lista_agendamentos">
+        Carregando agendamentos...
+      </div>
     </main>
   </body>
 </html>

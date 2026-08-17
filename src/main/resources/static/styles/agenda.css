@@ -70,8 +70,72 @@ nav button:hover,
 }
 
 main {
-  max-width: 1200px;
+  max-width: 720px;
   margin: 24px auto;
   padding: 0 20px 24px;
+}
+
+.novo_agendamento {
+  background: var(--surface);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.novo_agendamento label {
+  display: block;
+  font-size: 90%;
+  margin-bottom: 4px;
+}
+
+.novo_agendamento select {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid var(--surface-soft);
+  min-width: 220px;
+}
+
+.novo_agendamento input[type="submit"] {
+  border: none;
+  border-radius: 10px;
+  padding: 10px 16px;
+  background: var(--brand);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#lista_agendamentos {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.agendamento-linha {
+  background: var(--surface);
+  border-radius: 10px;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.agendamento-cliente {
+  font-weight: 600;
+}
+
+.agendamento-cancelar-btn {
+  border: none;
+  border-radius: 8px;
+  padding: 6px 12px;
+  background: var(--danger);
+  color: var(--surface);
+  cursor: pointer;
 }
 

@@ -66,6 +66,7 @@ Implementadas
 Falta implementar
 - Filtro por cliente na listagem de agendamentos (hoje lista todos os ativos futuros, sem filtro por cliente)
 
+- Testes de integração (MockMvc + H2) dos controllers
 
 
 ## Estrutura do projeto
