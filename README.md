@@ -63,10 +63,11 @@ Implementadas
 
 - Testes unitários (JUnit 5 + Mockito) de "ClienteService", "HorarioService" e "AgendamentoService"
 
+- Testes de integração (MockMvc + H2) dos controllers
 Falta implementar
 - Filtro por cliente na listagem de agendamentos (hoje lista todos os ativos futuros, sem filtro por cliente)
 
-- Testes de integração (MockMvc + H2) dos controllers
+
 
 
 ## Estrutura do projeto
