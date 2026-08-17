@@ -1,0 +1,61 @@
+section{
+    max-width: 720px;
+    margin: 8px auto;
+}
+
+.novo_horario{
+    background: var(--surface);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+}
+
+.novo_horario label{
+    display: block;
+    font-size: 90%;
+    margin-bottom: 4px;
+}
+
+.novo_horario input[type="submit"]{
+    border: none;
+    border-radius: 10px;
+    padding: 10px 16px;
+    background: var(--brand);
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#free_horarios{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.horario-linha{
+    background: var(--surface);
+    border-radius: 10px;
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.horario-disponivel{
+    color: var(--brand);
+    font-weight: 600;
+}
+
+.horario-deletar-btn{
+    border: none;
+    border-radius: 8px;
+    padding: 6px 12px;
+    background: var(--danger);
+    color: var(--surface);
+    cursor: pointer;
+}

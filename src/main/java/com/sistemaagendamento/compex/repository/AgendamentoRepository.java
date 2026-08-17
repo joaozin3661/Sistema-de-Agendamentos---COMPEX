@@ -9,4 +9,6 @@ public interface AgendamentoRepository extends JpaRepository<Agendamento,Long> {
 
     List<Agendamento> findByHorariosIdAndStatus(Long horariosId, Status status);
 
+    boolean existsByClienteId(Long clienteId);
+
 }

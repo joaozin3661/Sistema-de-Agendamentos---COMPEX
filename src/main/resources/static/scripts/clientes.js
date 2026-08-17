@@ -35,7 +35,7 @@ function fazerLinhaCliente(cliente){
 
 }
 
-// Carrega a lista
+
 async function load_clients(){
     try {        
         const response = await fetch(API);
@@ -45,12 +45,11 @@ async function load_clients(){
 
         const clientes = await response.json();
     
-        area.innerHTML = "Clientes <br><br>";
+        area.innerHTML = "";
 
-        // Se não houver clientes, mensagem para add um, senão, mostrar clientela
         if (!clientes.length)
         {
-            area.innerHTML += "Não há clientes cadastrados. Pressione  ''+ Novo Cliente '' para adicionar um";
+            area.textContent = "Não há clientes cadastrados. Pressione ''+ Novo Cliente'' para adicionar um";
         }
         else
         {
@@ -67,23 +66,23 @@ async function load_clients(){
     }
 }
 
-// Preenche e abre o modal
+
 function abrirModalEditar(cliente) {    
     document.getElementById('edit-id').value = cliente.id;
     document.getElementById('edit-nome').value = cliente.nome;
     document.getElementById('edit-cpf').value = cliente.cpf || '';
     document.getElementById('edit-idade').value = cliente.idade || '';
 
-    // Mostra o modal na tela
+
     modal.showModal();
 }
 
-// Fecha o modal
+
 function fecharModal() {
     modal.close();
 }
 
-// Ouve o evento de salvar o formulário do modal de edição
+
 formEditar.addEventListener('submit', async function(event) {
     event.preventDefault();
 
@@ -130,17 +129,21 @@ async function deletarCliente(id) {
         const response = await fetch(`${API}/${id}`, { method: 'DELETE' });
 
         if (!response.ok) {
-            throw new Error(`Erro ao deletar cliente: ${response.status}`);
+            const errorText = await response.text();
+            throw new Error(`${response.status}: ${errorText}`);
         }
 
         alert('Cliente deletado com sucesso!');
-        
+
         load_clients();
     } catch (error) {
         console.error(error);
-        alert('Não foi possível deletar o cliente.');
+        if (error.message.startsWith('409')) {
+            alert('Não é possível excluir: este cliente tem agendamentos vinculados.');
+        } else {
+            alert('Não foi possível deletar o cliente.');
+        }
     }
 }
 
-// Carrega os clientes ao abrir a página pela primeira vez
 load_clients();

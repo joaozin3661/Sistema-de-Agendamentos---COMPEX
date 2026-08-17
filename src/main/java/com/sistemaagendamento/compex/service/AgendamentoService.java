@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -28,8 +30,11 @@ public class AgendamentoService {
     }
 
     public List<Agendamento> listarAtivos() {
+        LocalDateTime agora = LocalDateTime.now();
         return agendamentoRepository.findAll().stream()
                 .filter(a -> a.getStatus() == Status.ATIVO)
+                .filter(a -> a.getHorarios().getHorarioLivre().isAfter(agora))
+                .sorted(Comparator.comparing(a -> a.getHorarios().getHorarioLivre()))
                 .toList();
     }
 
