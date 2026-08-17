@@ -15,9 +15,9 @@
 
     <header>
         <div>
-            <h1> <img class="Logotipo", src="assets/calendar.svg" alt="LogoProtótopo">  Atendimentos </h1>
+            <h1> <img class="Logotipo" , src="assets/calendar.svg" alt="LogoProtótopo"> Atendimentos </h1>
         </div>
-        
+
         <nav>
             <ul>
                 <li> <button onclick="window.location.href='index.html'">Início</button> </li>
@@ -30,14 +30,40 @@
     <!-- Formulrio de cadastro Clientes -->
     <section class="lista_cliente">
 
-        <button onclick="window.location.href='novo_cliente.html'">+ Novo Cliente</button>
-        <button onclick="window.location.href='index.html'">Voltar</button>
-
-
-        <div id="lista_clientes">
-            
+        <div class="opt_clientes">
+            <button onclick="window.location.href='novo_cliente.html'">+ Novo Cliente</button>
+            <button onclick="window.location.href='index.html'">Voltar</button>
         </div>
 
+        <div id="lista_clientes">
+        </div>
+
+        <dialog id="modal-editar">
+                <form id="form-editar">
+                    <h3>Editar Cliente</h3>
+
+                    <!-- Input oculto para guardar o ID do cliente -->
+                    <input type="hidden" id="edit-id">
+
+                    <div style="margin-bottom: 10px;">
+                        <label>Nome:</label><br>
+                        <input type="text" id="edit-nome" required>
+                    </div>
+
+                    <div style="margin-bottom: 10px;">
+                        <label>CPF:</label><br>
+                        <input type="text" id="edit-cpf" required>
+                    </div>
+
+                    <div style="margin-bottom: 10px;">
+                        <label>Idade:</label><br>
+                        <input type="number" id="edit-idade" min="1" required>
+                    </div>
+
+                    <button type="submit">Salvar Alterações</button>
+                    <button type="button" onclick="fecharModal()">Cancelar</button>
+                </form>
+            </dialog>
     </section>
 
     <script src="scripts/clientes.js"></script>

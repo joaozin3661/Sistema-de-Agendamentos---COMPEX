@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/style.css">
+    <title>Cadastro Horários</title>
+</head>
+<body>
+    <!-- Menu de cima  -->
+
+
+    <header>
+        <div>
+            <h1> <img class="Logotipo", src="assets/calendar.svg" alt="LogoProtótopo">  Atendimentos </h1>
+        </div>
+        
+        <nav>
+            <ul>
+                <li> <button onclick="window.location.href='index.html'">Início</button> </li>
+                <li> <button onclick="window.location.href='agenda.html'">Agendamentos</button> </li>
+            </ul>
+        </nav>
+        
+    </header>
+    
+
+
+    <!-- Menu de opções -->
+    <section>
+        <h2>Cadastro de horários</h2>
+
+        <form action="" method="post" id="new_horario">
+            
+            <label for="seg">Seg</label>
+            <input type="checkbox" name="" id="seg">
+            <label for="seg">Ter</label>
+            <input type="checkbox" name="" id="ter">
+            <label for="seg">Qua</label>
+            <input type="checkbox" name="" id="qua">
+            <label for="seg">Qui</label>
+            <input type="checkbox" name="" id="qui">
+            <label for="seg">Sex</label>
+            <input type="checkbox" name="" id="sex">
+            <label for="seg">Sáb</label>
+            <input type="checkbox" name="" id="sab">
+            <label for="seg">Dom</label>
+            <input type="checkbox" name="" id="dom">
+            
+            <div>
+                Dia de Início
+                <input type="date" name="" id="">
+            </div>
+
+            <div>
+                Dia de Fim
+                <input type="date" name="" id="">
+            </div>
+
+            <div>
+                Horário de Início
+                <input type="time" name="" id="">
+            </div>
+
+            <div>
+                Horário de Fim
+                <input type="time" name="" id="">
+            </div>
+
+            <input type="button" type="submit" value="Submit">
+            
+        </form>
+
+        <h3>Horários disponíveis</h2>
+        
+        <div id="free_horarios"></div>
+
+        
+        
+    </section>
+
+    <script src="scripts/cadastro_horario.js"></script>
+
+</body>
+</html>

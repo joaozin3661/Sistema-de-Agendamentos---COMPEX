@@ -21,6 +21,10 @@ public class ClienteService {
     }
 
     public Cliente criarCliente(Cliente cliente){
+        if (repository.existsByCpf(cliente.getCpf())){
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "CPF já cadastrado");
+        }
+
         if (cliente.getIdade() <= 0) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Idade inválida");
         }
