@@ -47,21 +47,17 @@ A aplicação sobe em "http://localhost:8080".
 Implementadas
 - Modelagem de dados: "Cliente", "Horarios", "Agendamento", "Status" (ATIVO/CANCELADO)
 - Regra de integridade a nível de banco: somente 1 agendamento ativo por horário
-- Tela estática inicial (front-end)
-- API REST para cadastro de clientes ("ClienteController", "ClienteService", "ClienteRepository"), com validação de campos (nome, CPF, idade)
-- API REST para cadastro de horários disponíveis ("HorarioController", "HorarioService", "HorariosRepository"), com checagem de horário duplicado (retorna 409)
-- Esqueleto da API REST de agendamento ("AgendamentoController", "AgendamentoService"): criar agendamento (valida cliente/horário e ocupação), cancelar agendamento (libera o horário), listar agendamentos ativos
-- Telas de cadastro e listagem de clientes ("clientes.html", "novo_cliente.html") integradas com a API
+- API REST para cadastro de clientes ("ClienteController", "ClienteService", "ClienteRepository"), com validação de campos (nome, CPF único, idade) e proteção contra exclusão de cliente com agendamento vinculado (409)
+- API REST para cadastro de horários disponíveis ("HorarioController", "HorarioService", "HorariosRepository"), com checagem de horário duplicado (409) e de horário no passado (400, `@Future`)
+- API REST de agendamento completa ("AgendamentoController", "AgendamentoService"): criar agendamento (valida cliente/horário e ocupação), cancelar agendamento (libera o horário), listar agendamentos ativos (ordenados por data, só os futuros)
+- Tela de cadastro/listagem/edição/exclusão de clientes ("clientes.html", "novo_cliente.html") integrada com a API
+- Tela de cadastro/listagem/exclusão de horários ("cadastro_horario.html") integrada com a API
+- Tela de agendamento ("agenda.html"): criar agendamento (cliente + horário disponível), listar agendamentos ativos, cancelar
 - Testes unitários (JUnit 5 + Mockito) de "ClienteService", "HorarioService" e "AgendamentoService"
 
-Em processo de implementação
-- Ligar o "AgendamentoController" no front-end (telas de agenda/cancelamento ainda estáticas)
-- O restante das telas
-
 Falta implementar
-- Endpoint de listagem dos próximos agendamentos com filtro por data/cliente (hoje só lista todos os ativos)
+- Filtro por cliente na listagem de agendamentos (hoje lista todos os ativos futuros, sem filtro por cliente)
 - Testes de integração (MockMvc + H2) dos controllers
-- Validação (`@Valid`) no `Horarios`/`HorarioController` (o cadastro de cliente já tem, o de horário ainda não)
 
 
 -> Estrutura do projeto
@@ -89,7 +85,13 @@ src/main/java/com/sistemaagendamento/compex/
 src/main/resources/
 ├── application.properties
 ├── schema.sql           (garantir 1 agendamento por horário)
-└── static/              (front-end (HTML/CSS))
+└── static/              (front-end HTML/CSS/JS)
+    ├── index.html
+    ├── clientes.html / novo_cliente.html
+    ├── cadastro_horario.html
+    ├── agenda.html
+    ├── scripts/
+    └── styles/
 ```
 
 -> Validação de horário duplicado

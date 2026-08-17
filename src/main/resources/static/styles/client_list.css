@@ -109,11 +109,16 @@ section{
 
         }
         
+        .btn-editar{
+            background: var(--brand);
+            color: var(--surface);
+        }
+
         .btn-deletar{
             background: var(--danger);
             color: var(--surface);
         }
-        
+
     }
 
     .cliente-nome{
