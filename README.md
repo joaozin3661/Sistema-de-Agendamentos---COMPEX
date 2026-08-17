@@ -1,24 +1,24 @@
--> Compex: Sistema de Agendamento
+# Compex: Sistema de Agendamento
 
 Sistema de agendamento para uma clínica de estética para a segunda fase do processo seletivo do COMPEX. 
 
--> Tecnologias utilizadas por enquanto
+## Tecnologias utilizadas por enquanto
 
 - Java 26
 - Spring Boot 4.1 (Web, Data JPA, Validation)
 - PostgreSQL (bd principal)
-- H2 (para testes)
+- H2, Mockito e JUnit5 (para testes)
 - Maven
-- HTML/CSS puro no front-end
+- HTML/CSS/JS puro no front-end
 
-Como executar o projeto
+## Como executar o projeto
 
 Pré-requisitos
 - Java 26 instalado
 - PostgreSQL rodando localmente
 - Um banco de dados criado chamado "agendamentos_compex"
 
-1. Configurar a variável de ambiente do banco
+### 1. Configurar a variável de ambiente do banco
 
 A senha do banco não fica no código para segurança dos programadores, ela é lida da variável de ambiente "DB_PASSWORD".
 Então tem que definir a sua senha do postgres no powershell/cmd
@@ -33,7 +33,7 @@ No Git Bash / Linux / macOS:
 export DB_PASSWORD=sua_senha_aqui
 ```
 
-2. Rodar a aplicação
+### 2. Rodar a aplicação
 
 Na raiz do projeto:
 ```bash
@@ -42,25 +42,35 @@ Na raiz do projeto:
 
 A aplicação sobe em "http://localhost:8080".
 
--> Funcionalidades implementadas/em processo de implementação/faltam implementar
+## Funcionalidades implementadas/em processo de implementação/faltam implementar
 
 Implementadas
 - Modelagem de dados: "Cliente", "Horarios", "Agendamento", "Status" (ATIVO/CANCELADO)
+
 - Regra de integridade a nível de banco: somente 1 agendamento ativo por horário
+
 - API REST para cadastro de clientes ("ClienteController", "ClienteService", "ClienteRepository"), com validação de campos (nome, CPF único, idade) e proteção contra exclusão de cliente com agendamento vinculado (409)
+
 - API REST para cadastro de horários disponíveis ("HorarioController", "HorarioService", "HorariosRepository"), com checagem de horário duplicado (409) e de horário no passado (400, `@Future`)
+
 - API REST de agendamento completa ("AgendamentoController", "AgendamentoService"): criar agendamento (valida cliente/horário e ocupação), cancelar agendamento (libera o horário), listar agendamentos ativos (ordenados por data, só os futuros)
+
 - Tela de cadastro/listagem/edição/exclusão de clientes ("clientes.html", "novo_cliente.html") integrada com a API
+
 - Tela de cadastro/listagem/exclusão de horários ("cadastro_horario.html") integrada com a API
+
 - Tela de agendamento ("agenda.html"): criar agendamento (cliente + horário disponível), listar agendamentos ativos, cancelar
+
 - Testes unitários (JUnit 5 + Mockito) de "ClienteService", "HorarioService" e "AgendamentoService"
 
+- Testes de integração (MockMvc + H2) dos controllers
 Falta implementar
 - Filtro por cliente na listagem de agendamentos (hoje lista todos os ativos futuros, sem filtro por cliente)
-- Testes de integração (MockMvc + H2) dos controllers
 
 
--> Estrutura do projeto
+
+
+## Estrutura do projeto
 
 ```
 src/main/java/com/sistemaagendamento/compex/
@@ -94,7 +104,7 @@ src/main/resources/
     └── styles/
 ```
 
--> Validação de horário duplicado
+## Validação de horário duplicado
 
 A regra "não permitir dois clientes agendados no mesmo horário" será garantida no nível de banco e da camada de serviço:
 
@@ -102,7 +112,7 @@ A regra "não permitir dois clientes agendados no mesmo horário" será garantid
 
 2. Camada de serviço: o `AgendamentoService` checa se o horário já tem um agendamento ativo (via `AgendamentoRepository.findByHorariosIdAndStatus`) ou está marcado como indisponível antes de criar, retornando `409 Conflict` pro cliente em vez de deixar estourar erro de banco.
 
--> Principal dificuldade encontrada
+## Principais dificuldades encontradas
 
 Garantir a regra de "um horário, um agendamento ativo" de forma segura sob concorrência foi mais do que uma checagem em Java, foi necessário eu fazer um índice único parcial no PostgreSQL, já que uma constraint única padrão ia bloquear agendamentos cancelados de liberar o horário.
 
